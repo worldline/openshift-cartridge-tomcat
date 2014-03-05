@@ -7,9 +7,9 @@ locked_files:
 - hooks/
 - hooks/*
 - env/
-- env/OPENSHIFT_JBOSSEWS_DIR
-- env/OPENSHIFT_JBOSSEWS_LOG_DIR
-- env/OPENSHIFT_JBOSSEWS_JDK*
+- env/OPENSHIFT_TOMCAT_DIR
+- env/OPENSHIFT_TOMCAT_LOG_DIR
+- env/OPENSHIFT_TOMCAT_JDK*
 - env/M2_HOME
 processed_templates:
 - 'metadata/jenkins_artifacts_glob.erb'

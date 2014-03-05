@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-if [ -e $OPENSHIFT_JBOSSEWS_DIR/webapps/ROOT.war ]; then
-  cp $OPENSHIFT_JBOSSEWS_DIR/webapps/ROOT.war $OPENSHIFT_REPO_DIR/webapps
+if [ -e $OPENSHIFT_TOMCAT_DIR/webapps/ROOT.war ]; then
+  cp $OPENSHIFT_TOMCAT_DIR/webapps/ROOT.war $OPENSHIFT_REPO_DIR/webapps
 fi
 

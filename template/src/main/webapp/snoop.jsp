@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>
-	<TITLE>JBossEAP6.0 JSP snoop page</TITLE>
+	<TITLE>TomcatEAP6.0 JSP snoop page</TITLE>
 	<%@ page import="javax.servlet.http.HttpUtils,java.util.Enumeration" %>
 	<%@ page import="java.lang.management.*" %>
 	<%@ page import="java.util.*" %>
@@ -8,7 +8,7 @@
 <BODY>
 
 <H1>WebApp JSP Snoop page</H1>
-<img src="images/jbosscorp_logo.png">
+<img src="images/tomcatcorp_logo.png">
 
 <h2>JVM Memory Monitor</h2>
  

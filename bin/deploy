@@ -2,7 +2,7 @@
 set -e
 set -x
 
-tmp=${OPENSHIFT_JBOSSEWS_DIR}/tmp
+tmp=${OPENSHIFT_TOMCAT_DIR}/tmp
 if [ -d $tmp ]; then
   for d in $tmp/*; do
       if [ -d $d ]; then
@@ -12,9 +12,9 @@ if [ -d $tmp ]; then
   done
 fi
 
-# if repo/webapps has any files in it, sync them to $OPENSHIFT_JBOSSEWS_DIR/webapps
-# and delete any files in $OPENSHIFT_JBOSSEWS_DIR/webapps that don't exist in
+# if repo/webapps has any files in it, sync them to $OPENSHIFT_TOMCAT_DIR/webapps
+# and delete any files in $OPENSHIFT_TOMCAT_DIR/webapps that don't exist in
 # repo/webapps
 if [ "$(ls ${OPENSHIFT_REPO_DIR}/webapps 2>/dev/null)" ]; then
-  rsync -r --delete ${OPENSHIFT_REPO_DIR}/webapps/ ${OPENSHIFT_JBOSSEWS_DIR}/webapps/
+  rsync -r --delete ${OPENSHIFT_REPO_DIR}/webapps/ ${OPENSHIFT_TOMCAT_DIR}/webapps/
 fi

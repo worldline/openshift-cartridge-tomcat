@@ -1,7 +1,7 @@
-%global cartridgedir %{_libexecdir}/openshift/cartridges/jbossews
+%global cartridgedir %{_libexecdir}/openshift/cartridges/tomcat
 
-Summary:       Provides JBossEWS2.0 support
-Name:          openshift-origin-cartridge-jbossews
+Summary:       Provides Tomcat7.0 support
+Name:          openshift-origin-cartridge-tomcat
 Version: 1.17.1.1
 Release:       1%{?dist}
 Group:         Development/Languages
@@ -25,11 +25,11 @@ Requires:      maven
 BuildRequires: jpackage-utils
 BuildArch:     noarch
 
-Obsoletes: openshift-origin-cartridge-jbossews-1.0
-Obsoletes: openshift-origin-cartridge-jbossews-2.0
+Obsoletes: openshift-origin-cartridge-tomcat-1.0
+Obsoletes: openshift-origin-cartridge-tomcat-2.0
 
 %description
-Provides JBossEWS1.0 and JBossEWS2.0 support to OpenShift. (Cartridge Format V2)
+Provides Tomcat1.0 and Tomcat7.0 support to OpenShift. (Cartridge Format V2)
 
 %prep
 %setup -q
@@ -58,13 +58,13 @@ alternatives --install /etc/alternatives/maven-3.0 maven-3.0 /usr/share/maven 10
 alternatives --set maven-3.0 /usr/share/maven
 %endif
 
-alternatives --remove jbossews-1.0 /usr/share/tomcat6
-alternatives --install /etc/alternatives/jbossews-1.0 jbossews-1.0 /usr/share/tomcat6 102
-alternatives --set jbossews-1.0 /usr/share/tomcat6
+alternatives --remove tomcat-1.0 /usr/share/tomcat6
+alternatives --install /etc/alternatives/tomcat-1.0 tomcat-1.0 /usr/share/tomcat6 102
+alternatives --set tomcat-1.0 /usr/share/tomcat6
 
-alternatives --remove jbossews-2.0 /usr/share/tomcat7
-alternatives --install /etc/alternatives/jbossews-2.0 jbossews-2.0 /usr/share/tomcat7 102
-alternatives --set jbossews-2.0 /usr/share/tomcat7
+alternatives --remove tomcat-2.0 /usr/share/tomcat7
+alternatives --install /etc/alternatives/tomcat-2.0 tomcat-2.0 /usr/share/tomcat7 102
+alternatives --set tomcat-2.0 /usr/share/tomcat7
 
 %files
 %dir %{cartridgedir}
@@ -84,7 +84,7 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Merge pull request #4233 from sg00dwin/app-start
   (dmcphers+openshiftbot@redhat.com)
 - Revisions to new app welcome pages. (sgoodwin@redhat.com)
-- Bug 1033144: Allow MAVEN_ARGS overriding in jbossews builds
+- Bug 1033144: Allow MAVEN_ARGS overriding in tomcat builds
   (ironcladlou@gmail.com)
 
 * Wed Dec 04 2013 Krishna Raman <kraman@gmail.com> 1.17.1.1-1
@@ -95,7 +95,7 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Merge pull request #4233 from sg00dwin/app-start
   (dmcphers+openshiftbot@redhat.com)
 - Revisions to new app welcome pages. (sgoodwin@redhat.com)
-- Bug 1033144: Allow MAVEN_ARGS overriding in jbossews builds
+- Bug 1033144: Allow MAVEN_ARGS overriding in tomcat builds
   (ironcladlou@gmail.com)
 
 * Thu Nov 07 2013 Adam Miller <admiller@redhat.com> 1.17.1-1
@@ -118,11 +118,11 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Merge pull request #3913 from ncdc/bz1018387
   (dmcphers+openshiftbot@redhat.com)
 - Add dependency dirs to managed_files.yml (andy.goldstein@gmail.com)
-- Updated JBoss cartridges to use OPENSHIFT_GEAR_MEMORY_MB for memory
+- Updated Tomcat cartridges to use OPENSHIFT_GEAR_MEMORY_MB for memory
   calculations (fotios@redhat.com)
 - Use deployment metadata for build related marker lookups
   (ironcladlou@gmail.com)
-- Fix jboss upgrade scripts (pmorie@gmail.com)
+- Fix tomcat upgrade scripts (pmorie@gmail.com)
 - Bump cartridge versions (fotios@redhat.com)
 - Explicitly set protocols on endpoints that provide a frontend mapping
   (rmillner@redhat.com)
@@ -221,7 +221,7 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
   (dmcphers+openshiftbot@redhat.com)
 - Bug 980321: Sync repo dir with live deployments dir on initial install
   (ironcladlou@gmail.com)
-- Bug 983216: Use rsync for jbossews deployments rather than mv
+- Bug 983216: Use rsync for tomcat deployments rather than mv
   (ironcladlou@gmail.com)
 
 * Tue Jul 09 2013 Adam Miller <admiller@redhat.com> 0.6.3-1
@@ -229,10 +229,10 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
   (dmcphers+openshiftbot@redhat.com)
 - Merge pull request #3005 from ironcladlou/bz/960924
   (dmcphers+openshiftbot@redhat.com)
-- Bug 965017: Improve jbossews control status message (ironcladlou@gmail.com)
+- Bug 965017: Improve tomcat control status message (ironcladlou@gmail.com)
 - Bug 960924: Add mysql and pg drivers to template pom.xml
   (ironcladlou@gmail.com)
-- Explicitly specify ERB files to process in jboss cartridges
+- Explicitly specify ERB files to process in tomcat cartridges
   (ironcladlou@gmail.com)
 
 * Tue Jul 02 2013 Adam Miller <admiller@redhat.com> 0.6.2-1
@@ -268,9 +268,9 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Bug 965591 (dmcphers@redhat.com)
 
 * Thu May 23 2013 Adam Miller <admiller@redhat.com> 0.4.5-1
-- Merge pull request #2605 from ironcladlou/dev/v2carts/jbossews
+- Merge pull request #2605 from ironcladlou/dev/v2carts/tomcat
   (dmcphers+openshiftbot@redhat.com)
-- Support OPENSHIFT_INTERNAL_* variables in jbossews v2 (ironcladlou@gmail.com)
+- Support OPENSHIFT_INTERNAL_* variables in tomcat v2 (ironcladlou@gmail.com)
 - Bug 966255: Remove OPENSHIFT_INTERNAL_* references from v2 carts
   (ironcladlou@gmail.com)
 
@@ -284,22 +284,22 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Fix bug 964348 (pmorie@gmail.com)
 - Merge pull request #2550 from ironcladlou/bz/965012
   (dmcphers+openshiftbot@redhat.com)
-- Bug 965012: Generate initial ROOT.war dynamically on install for jboss
+- Bug 965012: Generate initial ROOT.war dynamically on install for tomcat
   cartridges (ironcladlou@gmail.com)
 
 * Mon May 20 2013 Dan McPherson <dmcphers@redhat.com> 0.4.3-1
-- Bug 964093: Generate OPENSHIFT_JBOSSEWS_VERSION during jbossews install
+- Bug 964093: Generate OPENSHIFT_TOMCAT_VERSION during tomcat install
   (ironcladlou@gmail.com)
 - spec file cleanup (tdawson@redhat.com)
 
 * Thu May 16 2013 Adam Miller <admiller@redhat.com> 0.4.2-1
-- Bug 962324: Fix jbossews stop logic to tolerate missing pidfile
+- Bug 962324: Fix tomcat stop logic to tolerate missing pidfile
   (ironcladlou@gmail.com)
 - process-version -> update-configuration (dmcphers@redhat.com)
 - Bug 963156 (dmcphers@redhat.com)
-- <cartridge-jbossews> Bug 961628 - Fix Categories listed (jdetiber@redhat.com)
+- <cartridge-tomcat> Bug 961628 - Fix Categories listed (jdetiber@redhat.com)
 - WIP Cartridge Refactor -- Cleanup spec files (jhonce@redhat.com)
-- Minor compatibility fixes for jbossews (ironcladlou@gmail.com)
+- Minor compatibility fixes for tomcat (ironcladlou@gmail.com)
 
 * Wed May 08 2013 Adam Miller <admiller@redhat.com> 0.4.1-1
 - bump_minor_versions for sprint 28 (admiller@redhat.com)
@@ -311,7 +311,7 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 * Tue May 07 2013 Adam Miller <admiller@redhat.com> 0.3.7-1
 - Merge pull request #2353 from detiber/bz959844
   (dmcphers+openshiftbot@redhat.com)
-- Bug 959844 - JBoss EWS v2 Cartridge fixes for EWS1.0 (jdetiber@redhat.com)
+- Bug 959844 - Tomcat EWS v2 Cartridge fixes for EWS1.0 (jdetiber@redhat.com)
 
 * Mon May 06 2013 Adam Miller <admiller@redhat.com> 0.3.6-1
 - Bug 959132: Add cron cartridge integration (ironcladlou@gmail.com)
@@ -330,13 +330,13 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Env var WIP. (mrunalp@gmail.com)
 - Merge pull request #2275 from jwhonce/wip/cartridge_path
   (dmcphers+openshiftbot@redhat.com)
-- Merge pull request #2270 from ironcladlou/dev/v2carts/jbossews
+- Merge pull request #2270 from ironcladlou/dev/v2carts/tomcat
   (dmcphers+openshiftbot@redhat.com)
 - Merge pull request #2201 from BanzaiMan/dev/hasari/c276
   (dmcphers+openshiftbot@redhat.com)
 - Card online_runtime_266 - Renamed OPENSHIFT_<short name>_PATH to
   OPENSHIFT_<short name>_PATH_ELEMENT (jhonce@redhat.com)
-- Implement multi-versioned jbossews-1.0/2.0 v2 cartridge
+- Implement multi-versioned tomcat-1.0/2.0 v2 cartridge
   (ironcladlou@gmail.com)
 - Card 276 (asari.ruby@gmail.com)
 
@@ -349,7 +349,7 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Bug 957073 (dmcphers@redhat.com)
 
 * Thu Apr 25 2013 Adam Miller <admiller@redhat.com> 0.3.1-1
-- Bug 956626: Fix jbossews-2.0 paths (ironcladlou@gmail.com)
+- Bug 956626: Fix tomcat-2.0 paths (ironcladlou@gmail.com)
 - Card online_runtime_266 - Build PATH from
   CARTRIDGE_<CARTRIDGE_SHORT_NAME>_PATH (jhonce@redhat.com)
 - Split v2 configure into configure/post-configure (ironcladlou@gmail.com)
@@ -374,11 +374,11 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Merge pull request #2053 from calfonso/master
   (dmcphers+openshiftbot@redhat.com)
 - WIP Cartridge Refactor - Scrub manifests (jhonce@redhat.com)
-- Merge pull request #2052 from ironcladlou/dev/v2carts/jbossews-threaddump
+- Merge pull request #2052 from ironcladlou/dev/v2carts/tomcat-threaddump
   (dmcphers@redhat.com)
 - Adding connection hook for mongodb There are three leading params we don't
   care about, so the hooks are using shift to discard. (calfonso@redhat.com)
-- Add threaddump declaration to jbossews manifest (ironcladlou@gmail.com)
+- Add threaddump declaration to tomcat manifest (ironcladlou@gmail.com)
 - Documentation for action hooks (ironcladlou@gmail.com)
 
 * Fri Apr 12 2013 Adam Miller <admiller@redhat.com> 0.2.5-1
@@ -387,7 +387,7 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 
 * Wed Apr 10 2013 Adam Miller <admiller@redhat.com> 0.2.4-1
 - Merge pull request #1974 from brenton/v2_post2 (dmcphers@redhat.com)
-- Merge pull request #1967 from ironcladlou/dev/v2carts/jbossews
+- Merge pull request #1967 from ironcladlou/dev/v2carts/tomcat
   (dmcphers@redhat.com)
 - Registering/installing the cartridges in the rpm %%post (bleanhar@redhat.com)
 - Update template app and cart documentation (ironcladlou@gmail.com)
@@ -415,10 +415,10 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - bump_minor_versions for sprint 26 (admiller@redhat.com)
 
 * Wed Mar 27 2013 Adam Miller <admiller@redhat.com> 0.1.3-1
-- Bug 927570: Fix jbossews threaddump control action (ironcladlou@gmail.com)
+- Bug 927570: Fix tomcat threaddump control action (ironcladlou@gmail.com)
 
 * Thu Mar 21 2013 Adam Miller <admiller@redhat.com> 0.1.2-1
-- Fix jbossews v2 cartridge and implement build (ironcladlou@gmail.com)
+- Fix tomcat v2 cartridge and implement build (ironcladlou@gmail.com)
 
 * Tue Mar 19 2013 Dan McPherson <dmcphers@redhat.com> 0.1.1-1
 - new package built with tito

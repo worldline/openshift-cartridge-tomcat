@@ -5,31 +5,52 @@ case "$1" in
     version="$2"
 esac
 
-SYSTEM_JBOSSEWS_DIR="/etc/alternatives/jbossews-${version}"
+SYSTEM_TOMCAT_DIR="/etc/alternatives/apache-tomcat-${version}"
 
-if [ ! -d ${SYSTEM_JBOSSEWS_DIR} ]; then
-  echo "Couldn't find system jbossews dir at ${SYSTEM_JBOSSEWS_DIR}" 1>&2
+# if SYSTEM_TOMCAT_DIR doesn't exists change it, to use a local tomcat
+if [ ! -d "$SYSTEM_TOMCAT_DIR" ]; then
+  SYSTEM_TOMCAT_DIR="${OPENSHIFT_DATA_DIR}/apache-tomcat-${version}"
+  rm -fr "${SYSTEM_TOMCAT_DIR}*"
+  pushd "${OPENSHIFT_DATA_DIR}"
+  if [ "${version}" == "6.0" ]; then
+    VERSION="6.0.39"
+    wget "http://psg.mtu.edu/pub/apache/tomcat/tomcat-6/v${VERSION}/bin/apache-tomcat-${VERSION}.tar.gz"
+    tar xvzf ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION}.tar.gz
+    rm -f ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION}.tar.gz
+    ln -s ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION} ${OPENSHIFT_DATA_DIR}/apache-tomcat-6.0
+  else
+    VERSION="7.0.52"
+    wget "http://psg.mtu.edu/pub/apache/tomcat/tomcat-7/v${VERSION}/bin/apache-tomcat-${VERSION}.tar.gz"
+    tar xvzf ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION}.tar.gz
+    rm -f ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION}.tar.gz
+    ln -s ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION} ${OPENSHIFT_DATA_DIR}/apache-tomcat-7.0
+  fi
+  popd
+fi
+
+if [ ! -d ${SYSTEM_TOMCAT_DIR} ]; then
+  echo "Couldn't find system tomcat dir at ${SYSTEM_TOMCAT_DIR}" 1>&2
   exit 127
 fi
 
-mkdir -p ${OPENSHIFT_JBOSSEWS_DIR}/{run,tmp,conf,logs}
+mkdir -p ${OPENSHIFT_TOMCAT_DIR}/{run,tmp,conf,logs}
 
 # Set up the config directory in the user repository template
-cp ${OPENSHIFT_JBOSSEWS_DIR}/versions/{shared,${version}}/configuration/* ${OPENSHIFT_JBOSSEWS_DIR}/template/.openshift/config
+cp ${OPENSHIFT_TOMCAT_DIR}/versions/{shared,${version}}/configuration/* ${OPENSHIFT_TOMCAT_DIR}/template/.openshift/config
 
 # Link the system Tomcat binaries to the cart Tomcat instance directory
-ln -sf ${SYSTEM_JBOSSEWS_DIR}/bin/bootstrap.jar ${OPENSHIFT_JBOSSEWS_DIR}/bin/bootstrap.jar
-ln -sf ${SYSTEM_JBOSSEWS_DIR}/bin/commons-daemon.jar ${OPENSHIFT_JBOSSEWS_DIR}/bin/commons-daemon.jar
-ln -sf ${SYSTEM_JBOSSEWS_DIR}/bin/tomcat-juli.jar ${OPENSHIFT_JBOSSEWS_DIR}/bin/tomcat-juli.jar
+ln -sf ${SYSTEM_TOMCAT_DIR}/bin/bootstrap.jar ${OPENSHIFT_TOMCAT_DIR}/bin/bootstrap.jar
+ln -sf ${SYSTEM_TOMCAT_DIR}/bin/commons-daemon.jar ${OPENSHIFT_TOMCAT_DIR}/bin/commons-daemon.jar
+ln -sf ${SYSTEM_TOMCAT_DIR}/bin/tomcat-juli.jar ${OPENSHIFT_TOMCAT_DIR}/bin/tomcat-juli.jar
 
 # Need to remove link: -f gets confused as this is a link to a link
-[ -h ${OPENSHIFT_JBOSSEWS_DIR}/lib ] && rm ${OPENSHIFT_JBOSSEWS_DIR}/lib
-ln -sf ${SYSTEM_JBOSSEWS_DIR}/lib ${OPENSHIFT_JBOSSEWS_DIR}/lib
+[ -h ${OPENSHIFT_TOMCAT_DIR}/lib ] && rm ${OPENSHIFT_TOMCAT_DIR}/lib
+ln -sf ${SYSTEM_TOMCAT_DIR}/lib ${OPENSHIFT_TOMCAT_DIR}/lib
 
 # Link the user-controlled configurations to the Tomcat conf directory
-ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/web.xml ${OPENSHIFT_JBOSSEWS_DIR}/conf
-ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/tomcat-users.xml ${OPENSHIFT_JBOSSEWS_DIR}/conf
-ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/postgresql_module.xml ${OPENSHIFT_JBOSSEWS_DIR}/conf
-ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/catalina.properties ${OPENSHIFT_JBOSSEWS_DIR}/conf
-ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/catalina.policy ${OPENSHIFT_JBOSSEWS_DIR}/conf
-ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/logging.properties ${OPENSHIFT_JBOSSEWS_DIR}/conf
+ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/web.xml ${OPENSHIFT_TOMCAT_DIR}/conf
+ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/tomcat-users.xml ${OPENSHIFT_TOMCAT_DIR}/conf
+ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/postgresql_module.xml ${OPENSHIFT_TOMCAT_DIR}/conf
+ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/catalina.properties ${OPENSHIFT_TOMCAT_DIR}/conf
+ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/catalina.policy ${OPENSHIFT_TOMCAT_DIR}/conf
+ln -sf ${OPENSHIFT_REPO_DIR}/.openshift/config/logging.properties ${OPENSHIFT_TOMCAT_DIR}/conf
