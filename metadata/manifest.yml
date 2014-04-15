@@ -1,7 +1,7 @@
 ---
 Name: tomcat
 Cartridge-Short-Name: TOMCAT
-Cartridge-Vendor: worldline
+Cartridge-Vendor: atosworldline
 Cartridge-Version: 0.0.9
 Compatible-Versions: []
 Display-Name: Tomcat 7

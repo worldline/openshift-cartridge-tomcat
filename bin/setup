@@ -5,7 +5,7 @@ case "$1" in
     version="$2"
 esac
 
-SYSTEM_TOMCAT_DIR="/etc/alternatives/apache-tomcat-${version}"
+SYSTEM_TOMCAT_DIR="/opt/apache-tomcat-${version}"
 
 # if SYSTEM_TOMCAT_DIR doesn't exists change it, to use a local tomcat
 if [ ! -d "$SYSTEM_TOMCAT_DIR" ]; then
