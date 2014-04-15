@@ -19,7 +19,7 @@ if [ ! -d "$SYSTEM_TOMCAT_DIR" ]; then
     rm -f ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION}.tar.gz
     ln -s ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION} ${OPENSHIFT_DATA_DIR}/apache-tomcat-6.0
   else
-    VERSION="7.0.52"
+    VERSION="7.0.53"
     wget "http://psg.mtu.edu/pub/apache/tomcat/tomcat-7/v${VERSION}/bin/apache-tomcat-${VERSION}.tar.gz"
     tar xvzf ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION}.tar.gz
     rm -f ${OPENSHIFT_DATA_DIR}/apache-tomcat-${VERSION}.tar.gz
