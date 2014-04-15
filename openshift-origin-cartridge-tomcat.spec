@@ -2,7 +2,7 @@
 
 Summary:       Provides Tomcat7.0 support
 Name:          openshift-origin-cartridge-tomcat
-Version: 1.17.1.2
+Version: 1.17.1.3
 Release:       1%{?dist}
 Group:         Development/Languages
 License:       ASL 2.0
@@ -75,6 +75,9 @@ alternatives --set tomcat-2.0 /usr/share/tomcat7
 %doc %{cartridgedir}/LICENSE
 
 %changelog
+* Tue Apr 15 2014 Unknown name 1.17.1.3-1
+- ease upgrade from openshift-cartidge-tomcat-community (a512753)
+
 * Wed Mar 05 2014 Filirom1 <filirom1@gmail.com> 1.17.1.2-1
 - new package built with tito
 
