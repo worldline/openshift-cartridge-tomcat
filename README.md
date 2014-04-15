@@ -1,5 +1,11 @@
 # OpenShift Tomcat Community Cartridge
 
+## Use it
+
+In OpenShift, choose a downloaded cartridge, with the following URL : http://cartreflect-claytondev.rhcloud.com/github/worldline/openshift-cartridge-tomcat
+
+## How this cartridge was created
+
 This cartidge was forked from https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossews
 
 Every JbossEWS reference was removed and replaced by tomcat.
@@ -77,7 +83,7 @@ Make sure this option is enable the the broker config.
 
     DOWNLOAD_CARTRIDGES_ENABLED="true"
 
-Then create a cartridge with this URL: <http://cartreflect-claytondev.rhcloud.com/reflect?github=AtosWorldline/openshift-cartridge-tomcat-community>
+Then create a cartridge with this URL: <http://cartreflect-claytondev.rhcloud.com/github/worldline/openshift-cartridge-tomcat>
 
 ## Install as a RPM
 
