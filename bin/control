@@ -10,7 +10,7 @@ then
     exit 1
 fi
 
-cartridge_type="tomcatews"
+cartridge_type="tomcat"
 
 TOMCAT_PID_FILE="${OPENSHIFT_TOMCAT_DIR}/run/tomcat.pid"
 
@@ -64,9 +64,9 @@ function ishttpup() {
 function start_app() {
     # Check for running app
     if isrunning; then
-        echo "The tomcatews cartridge is already running" 1>&2
+        echo "The tomcat cartridge is already running" 1>&2
     else
-        echo "Starting tomcatews cartridge"
+        echo "Starting tomcat cartridge"
         
         # Setup the config directory (for --from-code path where the code repository did
         # not provide config files, link to the template config files)
@@ -87,10 +87,10 @@ function start_app() {
         export CATALINA_BASE=$OPENSHIFT_TOMCAT_DIR
         export CATALINA_TMPDIR=${OPENSHIFT_TOMCAT_DIR}/tmp
 
-        LOGPIPE=${OPENSHIFT_HOMEDIR}/app-root/runtime/logshifter-tomcatews
+        LOGPIPE=${OPENSHIFT_HOMEDIR}/app-root/runtime/logshifter-tomcat
         rm -f $LOGPIPE && mkfifo $LOGPIPE
 
-        /usr/bin/logshifter -tag tomcatews < $LOGPIPE &
+        /usr/bin/logshifter -tag tomcat < $LOGPIPE &
         ${OPENSHIFT_TOMCAT_DIR}/bin/tomcat start &> $LOGPIPE &
         echo $! > $TOMCAT_PID_FILE
 
@@ -108,9 +108,9 @@ function start_app() {
 
 function stop_app() {
     if ! isrunning; then
-        echo "The tomcatews cartridge is already stopped" 1>&2
+        echo "The tomcat cartridge is already stopped" 1>&2
     elif [ -f "$TOMCAT_PID_FILE" ]; then
-        echo "Stopping tomcatews cartridge"
+        echo "Stopping tomcat cartridge"
         pid=$(cat $TOMCAT_PID_FILE);
         echo "Sending SIGTERM to tomcat:$pid ..." 1>&2
         killtree $pid
@@ -121,7 +121,7 @@ function stop_app() {
 
 function threaddump() {
     if ! isrunning; then
-        echo "The tomcatews cartridge is stopped"
+        echo "The tomcat cartridge is stopped"
         exit 1
     elif [ -f "$TOMCAT_PID_FILE" ]; then
         pid=$(cat $TOMCAT_PID_FILE);
@@ -137,9 +137,9 @@ function threaddump() {
 
 # Clean up any log files
 function tidy() {
-  client_message "Emptying tomcatews logs from dir: $OPENSHIFT_LOG_DIR"
+  client_message "Emptying tomcat logs from dir: $OPENSHIFT_LOG_DIR"
   shopt -s dotglob
-  rm -rf $OPENSHIFT_LOG_DIR/tomcatews.log*
+  rm -rf $OPENSHIFT_LOG_DIR/tomcat.log*
   rm -rf $OPENSHIFT_TOMCAT_DIR/tmp/*
 }
 
@@ -177,7 +177,7 @@ case "$1" in
             exit 0
         fi
 
-        client_result "The tomcatews cartridge is running."
+        client_result "The tomcat cartridge is running."
         exit 0
     ;;
     build)

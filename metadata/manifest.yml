@@ -1,5 +1,5 @@
 ---
-Name: tomcatews
+Name: tomcat
 Cartridge-Short-Name: TOMCAT
 Cartridge-Vendor: worldline
 Cartridge-Version: 0.0.19
@@ -28,8 +28,8 @@ Website: http://tomcat.apache.org/
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
 Provides:
-- tomcatews-7.0
-- tomcatews
+- tomcat-7.0
+- tomcat
 - tomcat-7.0
 - tomcat-7.0.0
 Publishes:
@@ -72,10 +72,10 @@ Version-Overrides:
       for large-scale lightweight web applications based on Tomcat 6. Build and deploy
       JSPs and Servlets in the cloud.
     Provides:
-    - tomcatews-6.0
-    - tomcatews
-    - tomcatews(version) = 6.0.0
-    - tomcatews(version) >= 6.0
+    - tomcat-6.0
+    - tomcat
+    - tomcat(version) = 6.0.0
+    - tomcat(version) >= 6.0
     - tomcat-6.0
     - tomcat-6.0.0
     Categories:
