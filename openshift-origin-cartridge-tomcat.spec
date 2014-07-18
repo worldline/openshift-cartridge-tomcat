@@ -1,8 +1,8 @@
-%global cartridgedir %{_libexecdir}/openshift/cartridges/tomcatews
+%global cartridgedir %{_libexecdir}/openshift/cartridges/tomcat
 
 Summary:       Provides Tomcat7.0 support
-Name:          openshift-origin-cartridge-tomcatews
-Version: 1.25.3.1
+Name:          openshift-origin-cartridge-tomcat
+Version: 1.25.3.2
 Release:       1%{?dist}
 Group:         Development/Languages
 License:       ASL 2.0
@@ -23,10 +23,10 @@ Requires:      maven3
 Requires:      maven
 %endif
 BuildRequires: jpackage-utils
-Provides:      openshift-origin-cartridge-tomcatews-1.0 = 2.0.0
-Provides:      openshift-origin-cartridge-tomcatews-2.0 = 2.0.0
-Obsoletes:     openshift-origin-cartridge-tomcatews-1.0 <= 1.99.9
-Obsoletes:     openshift-origin-cartridge-tomcatews-2.0 <= 1.99.9
+Provides:      openshift-origin-cartridge-tomcat-1.0 = 2.0.0
+Provides:      openshift-origin-cartridge-tomcat-2.0 = 2.0.0
+Obsoletes:     openshift-origin-cartridge-tomcat-1.0 <= 1.99.9
+Obsoletes:     openshift-origin-cartridge-tomcat-2.0 <= 1.99.9
 BuildArch:     noarch
 
 %description
@@ -59,13 +59,13 @@ alternatives --install /etc/alternatives/maven-3.0 maven-3.0 /usr/share/maven 10
 alternatives --set maven-3.0 /usr/share/maven
 %endif
 
-alternatives --remove tomcatews-1.0 /usr/share/tomcat6
-alternatives --install /etc/alternatives/tomcatews-1.0 tomcatews-1.0 /usr/share/tomcat6 102
-alternatives --set tomcatews-1.0 /usr/share/tomcat6
+alternatives --remove tomcat-1.0 /usr/share/tomcat6
+alternatives --install /etc/alternatives/tomcat-1.0 tomcat-1.0 /usr/share/tomcat6 102
+alternatives --set tomcat-1.0 /usr/share/tomcat6
 
-alternatives --remove tomcatews-2.0 /usr/share/tomcat7
-alternatives --install /etc/alternatives/tomcatews-2.0 tomcatews-2.0 /usr/share/tomcat7 102
-alternatives --set tomcatews-2.0 /usr/share/tomcat7
+alternatives --remove tomcat-2.0 /usr/share/tomcat7
+alternatives --install /etc/alternatives/tomcat-2.0 tomcat-2.0 /usr/share/tomcat7 102
+alternatives --set tomcat-2.0 /usr/share/tomcat7
 
 %files
 %dir %{cartridgedir}
@@ -79,6 +79,9 @@ alternatives --set tomcatews-2.0 /usr/share/tomcat7
 %doc %{cartridgedir}/LICENSE
 
 %changelog
+* Fri Jul 18 2014 openshift tomcat cartridge
+- new package built with tito
+
 * Thu Jul 10 2014 Adam Miller <admiller@redhat.com> 1.25.3.1-1
 - 
 
@@ -131,7 +134,7 @@ alternatives --set tomcatews-2.0 /usr/share/tomcat7
 - Update Cartridge Versions for Stage Cut (vvitek@redhat.com)
 
 * Wed Mar 26 2014 Adam Miller <admiller@redhat.com> 1.21.4-1
-- Incorrect log file name in the output when threaddump tomcatews app.
+- Incorrect log file name in the output when threaddump tomcat app.
   (bparees@redhat.com)
 
 * Tue Mar 25 2014 Adam Miller <admiller@redhat.com> 1.21.3-1
@@ -191,7 +194,7 @@ alternatives --set tomcatews-2.0 /usr/share/tomcat7
   AS/EAP/Tomcat) in standard way (via request.isSecure()) (bparees@redhat.com)
 
 * Fri Jan 24 2014 Adam Miller <admiller@redhat.com> 1.18.7-1
-- Bug 988756 - Adding Requires: bc to tomcatews cartridge (bleanhar@redhat.com)
+- Bug 988756 - Adding Requires: bc to tomcat cartridge (bleanhar@redhat.com)
 
 * Thu Jan 23 2014 Adam Miller <admiller@redhat.com> 1.18.6-1
 - Bug 974933 - Inconsistent message is shown when rhc threaddump for a scaled
