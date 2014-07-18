@@ -2,7 +2,7 @@
 
 Summary:       Provides Tomcat7.0 support
 Name:          openshift-origin-cartridge-tomcat
-Version: 1.25.3.2
+Version: 1.25.3.3
 Release:       1%{?dist}
 Group:         Development/Languages
 License:       ASL 2.0
@@ -11,8 +11,6 @@ Source0:       http://mirror.openshift.com/pub/openshift-origin/source/%{name}/%
 Requires:      bc
 Requires:      rubygem(openshift-origin-node)
 Requires:      openshift-origin-node-util
-Requires:      tomcat6
-Requires:      tomcat7
 Requires:      lsof
 Requires:      java-1.7.0-openjdk
 Requires:      java-1.7.0-openjdk-devel
@@ -80,6 +78,9 @@ alternatives --set tomcat-2.0 /usr/share/tomcat7
 %doc %{cartridgedir}/LICENSE
 
 %changelog
+* Fri Jul 18 2014 remove tomcat6 and tomcat7 from dependencies
+- rename tomcatews -> tomcat (Filirom1@gmail.com)
+
 * Fri Jul 18 2014 openshift tomcat cartridge
 - new package built with tito
 
