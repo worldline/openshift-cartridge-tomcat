@@ -37,6 +37,7 @@ Provides Tomcat1.0 and Tomcat7.0 support to OpenShift. (Cartridge Format V2)
 
 %build
 %__rm %{name}.spec
+%__rm -rf rel-eng
 
 %install
 %__mkdir -p %{buildroot}%{cartridgedir}
