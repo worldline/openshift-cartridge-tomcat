@@ -499,8 +499,8 @@
 <!-- file can be downloaded from the RHQ Server. Using the GUI, navigate  -->
 <!-- to the Administration page. Then click 'Download Agent Connectors'.  -->
 <!-- Download connector-rtfilter.zip. Unzip to extract the jar.           -->
-<!-- For more information see the JBoss ON Feature Guide, Response Time   -->
-<!-- Filter section. http://www.redhat.com/docs/en-US/JBoss_ON            -->
+<!-- For more information see the Tomcat ON Feature Guide, Response Time   -->
+<!-- Filter section. http://www.redhat.com/docs/en-US/Tomcat_ON            -->
 <!--                                                                      -->
 <!-- Optional parameters                                                  -->
 <!--                                                                      -->

@@ -1,37 +1,37 @@
 ---
-Name: jbossews
-Cartridge-Short-Name: JBOSSEWS
-Cartridge-Vendor: redhat
+Name: tomcatews
+Cartridge-Short-Name: TOMCAT
+Cartridge-Vendor: worldline
 Cartridge-Version: 0.0.19
 Compatible-Versions:
 - 0.0.17
 - 0.0.18
-Display-Name: Tomcat 7 (JBoss EWS 2.0)
-Description: JBoss Enterprise Web Server is the enterprise-class Java web container
+Display-Name: Tomcat 7
+Description: Tomcat Enterprise Web Server is the enterprise-class Java web container
   for large-scale lightweight web applications based on Tomcat 7. Build and deploy
   JSPs and Servlets in the cloud.
-Version: '2.0'
+Version: '7.0'
 Versions:
-- '2.0'
-- '1.0'
+- '7.0'
+- '6.0'
 License: LGPL
 License-Url: http://www.gnu.org/copyleft/lesser.txt
-Vendor: jboss.com
+Vendor: tomcat
 Categories:
 - service
 - java
-- jboss
+- tomcat
 - tomcat
 - tomcat7
 - web_framework
-Website: http://www.redhat.com/products/jbossenterprisemiddleware/web-server/
+Website: http://tomcat.apache.org/
 Help-Topics:
   Developer Center: https://www.openshift.com/developers
 Provides:
-- jbossews-2.0
-- jbossews
-- jboss-ews-2.0
-- jboss-ews-2.0.0
+- tomcatews-7.0
+- tomcatews
+- tomcat-7.0
+- tomcat-7.0.0
 Publishes:
   get-internal-uri:
     Type: NET_TCP:http
@@ -66,22 +66,22 @@ Endpoints:
 Additional-Control-Actions:
 - threaddump
 Version-Overrides:
-  '1.0':
-    Display-Name: Tomcat 6 (JBoss EWS 1.0)
-    Description: JBoss Enterprise Web Server is the enterprise-class Java web container
+  '6.0':
+    Display-Name: Tomcat 6
+    Description: Tomcat Enterprise Web Server is the enterprise-class Java web container
       for large-scale lightweight web applications based on Tomcat 6. Build and deploy
       JSPs and Servlets in the cloud.
     Provides:
-    - jbossews-1.0
-    - jbossews
-    - jbossews(version) = 1.0.0
-    - jbossews(version) >= 1.0
-    - jboss-ews-1.0
-    - jboss-ews-1.0.0
+    - tomcatews-6.0
+    - tomcatews
+    - tomcatews(version) = 6.0.0
+    - tomcatews(version) >= 6.0
+    - tomcat-6.0
+    - tomcat-6.0.0
     Categories:
     - service
     - java
-    - jboss
+    - tomcat
     - tomcat
     - tomcat6
     - web_framework

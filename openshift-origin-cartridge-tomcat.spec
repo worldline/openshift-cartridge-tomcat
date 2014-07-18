@@ -1,7 +1,7 @@
-%global cartridgedir %{_libexecdir}/openshift/cartridges/jbossews
+%global cartridgedir %{_libexecdir}/openshift/cartridges/tomcatews
 
-Summary:       Provides JBossEWS2.0 support
-Name:          openshift-origin-cartridge-jbossews
+Summary:       Provides Tomcat7.0 support
+Name:          openshift-origin-cartridge-tomcatews
 Version: 1.25.3.1
 Release:       1%{?dist}
 Group:         Development/Languages
@@ -23,14 +23,14 @@ Requires:      maven3
 Requires:      maven
 %endif
 BuildRequires: jpackage-utils
-Provides:      openshift-origin-cartridge-jbossews-1.0 = 2.0.0
-Provides:      openshift-origin-cartridge-jbossews-2.0 = 2.0.0
-Obsoletes:     openshift-origin-cartridge-jbossews-1.0 <= 1.99.9
-Obsoletes:     openshift-origin-cartridge-jbossews-2.0 <= 1.99.9
+Provides:      openshift-origin-cartridge-tomcatews-1.0 = 2.0.0
+Provides:      openshift-origin-cartridge-tomcatews-2.0 = 2.0.0
+Obsoletes:     openshift-origin-cartridge-tomcatews-1.0 <= 1.99.9
+Obsoletes:     openshift-origin-cartridge-tomcatews-2.0 <= 1.99.9
 BuildArch:     noarch
 
 %description
-Provides JBossEWS1.0 and JBossEWS2.0 support to OpenShift. (Cartridge Format V2)
+Provides Tomcat1.0 and Tomcat7.0 support to OpenShift. (Cartridge Format V2)
 
 %prep
 %setup -q
@@ -59,13 +59,13 @@ alternatives --install /etc/alternatives/maven-3.0 maven-3.0 /usr/share/maven 10
 alternatives --set maven-3.0 /usr/share/maven
 %endif
 
-alternatives --remove jbossews-1.0 /usr/share/tomcat6
-alternatives --install /etc/alternatives/jbossews-1.0 jbossews-1.0 /usr/share/tomcat6 102
-alternatives --set jbossews-1.0 /usr/share/tomcat6
+alternatives --remove tomcatews-1.0 /usr/share/tomcat6
+alternatives --install /etc/alternatives/tomcatews-1.0 tomcatews-1.0 /usr/share/tomcat6 102
+alternatives --set tomcatews-1.0 /usr/share/tomcat6
 
-alternatives --remove jbossews-2.0 /usr/share/tomcat7
-alternatives --install /etc/alternatives/jbossews-2.0 jbossews-2.0 /usr/share/tomcat7 102
-alternatives --set jbossews-2.0 /usr/share/tomcat7
+alternatives --remove tomcatews-2.0 /usr/share/tomcat7
+alternatives --install /etc/alternatives/tomcatews-2.0 tomcatews-2.0 /usr/share/tomcat7 102
+alternatives --set tomcatews-2.0 /usr/share/tomcat7
 
 %files
 %dir %{cartridgedir}
@@ -131,7 +131,7 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Update Cartridge Versions for Stage Cut (vvitek@redhat.com)
 
 * Wed Mar 26 2014 Adam Miller <admiller@redhat.com> 1.21.4-1
-- Incorrect log file name in the output when threaddump jbossews app.
+- Incorrect log file name in the output when threaddump tomcatews app.
   (bparees@redhat.com)
 
 * Tue Mar 25 2014 Adam Miller <admiller@redhat.com> 1.21.3-1
@@ -187,11 +187,11 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
 - Merge pull request #4574 from bparees/https
   (dmcphers+openshiftbot@redhat.com)
 - bump_minor_versions for sprint 40 (admiller@redhat.com)
-- Bug 1057077 - Propagate https information to Java EE cartridgets(JBoss
+- Bug 1057077 - Propagate https information to Java EE cartridgets(Tomcat
   AS/EAP/Tomcat) in standard way (via request.isSecure()) (bparees@redhat.com)
 
 * Fri Jan 24 2014 Adam Miller <admiller@redhat.com> 1.18.7-1
-- Bug 988756 - Adding Requires: bc to jbossews cartridge (bleanhar@redhat.com)
+- Bug 988756 - Adding Requires: bc to tomcatews cartridge (bleanhar@redhat.com)
 
 * Thu Jan 23 2014 Adam Miller <admiller@redhat.com> 1.18.6-1
 - Bug 974933 - Inconsistent message is shown when rhc threaddump for a scaled
@@ -210,9 +210,9 @@ alternatives --set jbossews-2.0 /usr/share/tomcat7
   redeployed (bparees@redhat.com)
 
 * Mon Jan 13 2014 Adam Miller <admiller@redhat.com> 1.18.3-1
-- Merge pull request #4416 from bparees/jboss_startup
+- Merge pull request #4416 from bparees/tomcat_startup
   (dmcphers+openshiftbot@redhat.com)
-- distinguish between timed out and failed jboss starts (bparees@redhat.com)
+- distinguish between timed out and failed tomcat starts (bparees@redhat.com)
 
 * Thu Jan 09 2014 Troy Dawson <tdawson@redhat.com> 1.18.2-1
 - Bug 1033581 - Adding upgrade logic to remove the unneeded

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${OPENSHIFT_JBOSSEWS_DIR}/bin/util
+source ${OPENSHIFT_TOMCAT_DIR}/bin/util
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 export_java_home
@@ -35,8 +35,8 @@ if [ -z "$JAVA_OPTS" ]; then
    JAVA_OPTS="$memory_options -DOPENSHIFT_APP_UUID=${OPENSHIFT_APP_UUID} -Djava.util.logging.config.file=$CATALINA_BASE/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -Djava.net.preferIPv4Stack=true"                                                                                                                                    
 
    if marker_present "enable_jpda"; then
-      echo "enable_jpda marker found; enabling debugging on ${OPENSHIFT_JBOSSEWS_IP}:${OPENSHIFT_JBOSSEWS_JPDA_PORT}"
-   	  JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=${OPENSHIFT_JBOSSEWS_IP}:${OPENSHIFT_JBOSSEWS_JPDA_PORT},server=y,suspend=n"
+      echo "enable_jpda marker found; enabling debugging on ${OPENSHIFT_TOMCAT_IP}:${OPENSHIFT_TOMCAT_JPDA_PORT}"
+   	  JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=${OPENSHIFT_TOMCAT_IP}:${OPENSHIFT_TOMCAT_JPDA_PORT},server=y,suspend=n"
    fi
 fi
 
@@ -68,9 +68,9 @@ replacement_conf_files=(
 for conf_file in "${replacement_conf_files[@]}"; do
   if [ -f ${OPENSHIFT_REPO_DIR}/.openshift/config/${conf_file} ]
   then
-    sed ${sed_replace_env} ${OPENSHIFT_REPO_DIR}/.openshift/config/${conf_file} > ${OPENSHIFT_JBOSSEWS_DIR}/conf/${conf_file}
+    sed ${sed_replace_env} ${OPENSHIFT_REPO_DIR}/.openshift/config/${conf_file} > ${OPENSHIFT_TOMCAT_DIR}/conf/${conf_file}
   else 
-    sed ${sed_replace_env} template/.openshift/config/${conf_file} > ${OPENSHIFT_JBOSSEWS_DIR}/conf/${conf_file}    
+    sed ${sed_replace_env} template/.openshift/config/${conf_file} > ${OPENSHIFT_TOMCAT_DIR}/conf/${conf_file}    
   fi
 done
 
